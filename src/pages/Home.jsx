@@ -7,10 +7,14 @@ const Home = () => {
   const [tutorials, setTutorials] = useState([])
 
   const getTutorials = async () => {
-    const URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/"
-    const res = await axios(URL)
-    console.log(res.data)
-    setTutorials(res.data)
+    // const URL = "https://tutorial-api.fullstack.clarusway.com/tutorials/"
+    try {
+      const res = await axios(process.env.REACT_APP_URL)
+      console.log(res.data)
+      setTutorials(res.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   //? componentDidMount (ilk render sonrasi bir kere istek gonder)
